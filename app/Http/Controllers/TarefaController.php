@@ -26,11 +26,19 @@ class TarefaController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return Application|Factory|View
      */
-    public function index()
+    public function index(Request $request)
     {
-        if(auth()->check()) {
+        $tarefas = Tarefa::where('user_id', auth()->user()->id)->paginate(10);
+        return view(
+            'tarefa.index',
+            [
+                'tarefas' => $tarefas,
+                'request' => $request->all()
+            ]);
+
+        /*if(auth()->check()) {
             $id = auth()->user()->id;
             $name = auth()->user()->name;
             $email = auth()->user()->email;
@@ -38,7 +46,7 @@ class TarefaController extends Controller
             return "ID: $id | Nome: $name | Email: $email";
         } else {
             return "Não está logado";
-        }
+        }*/
     }
 
     /**
@@ -59,11 +67,14 @@ class TarefaController extends Controller
      */
     public function store(Request $request)
     {
-        $tarefa = Tarefa::create($request->all());
+        $dados = $request->all();
+        $dados['user_id'] = auth()->user()->id;
+
+        $tarefa = Tarefa::create($dados);
 
         // Envio de Email
-        Mail::to(auth()->user()->email)
-            ->send(new NovaTarefaMail($tarefa));
+//        Mail::to(auth()->user()->email)
+//            ->send(new NovaTarefaMail($tarefa));
 
         return redirect()->route('tarefa.show', ['tarefa' => $tarefa->id]);
     }
