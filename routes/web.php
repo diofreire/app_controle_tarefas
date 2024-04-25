@@ -20,11 +20,13 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
+Route::get('tarefa/exportacao','App\Http\Controllers\TarefaController@download')->name('tarefa.download');
+
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
 //    ->name('home')
 //    ->middleware('verified');
 
-Route::resource('tarefa', 'App\Http\Controllers\TarefaController')
+Route::resource('tarefa','App\Http\Controllers\TarefaController')
     ->middleware('verified');
 
 Route::get('mensagem-teste', function () {
