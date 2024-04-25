@@ -31,12 +31,17 @@
                                     <td>{{ $t['id'] }}</td>
                                     <td>{{ $t['tarefa'] }}</td>
                                     <td>{{ date('d/m/Y', strtotime($t['data_limite_conclusao'])) }}</td>
-                                    <td><a href="{{ route('tarefa.edit', ['tarefa' => $t['id']]) }}" data-bs-toggle="tooltip" title="Editar" >Editar</a></td>
+                                    <td>
+                                        <a href="{{ route('tarefa.edit', ['tarefa' => $t['id']]) }}" data-bs-toggle="tooltip" title="Editar" >
+                                            <i class="bi-pencil-fill"></i>
+                                        </a>
                                     <td>
                                         <form id='form_{{$t['id']}}' action="{{ route('tarefa.destroy', ['tarefa' => $t['id']]) }}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <a href="#" onclick="document.getElementById('form_{{$t['id']}}').submit()">Excluir</a>
+                                            <a href="#" onclick="document.getElementById('form_{{$t['id']}}').submit()" data-bs-toggle="tooltip" title="Excluir">
+                                                <i class="bi-trash-fill"></i>
+                                            </a>
                                         </form>
                                     </td>
                                 </tr>
