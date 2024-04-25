@@ -83,7 +83,7 @@ class TarefaController extends Controller
      * Display the specified resource.
      *
      * @param Tarefa $tarefa
-     * @return Response
+     * @return Application|Factory|View
      */
     public function show(Tarefa $tarefa)
     {
@@ -94,11 +94,18 @@ class TarefaController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param Tarefa $tarefa
-     * @return Response
+     * @return Application|Factory|View
      */
     public function edit(Tarefa $tarefa)
     {
-        //
+        if(!($tarefa->user_id == auth()->user()->id)) {
+            return view('acesso-negado');
+        }
+
+        return view('tarefa.edit',
+            [
+                'tarefa' => $tarefa
+            ]);
     }
 
     /**
@@ -106,21 +113,31 @@ class TarefaController extends Controller
      *
      * @param Request $request
      * @param Tarefa $tarefa
-     * @return Response
+     * @return RedirectResponse
      */
     public function update(Request $request, Tarefa $tarefa)
     {
-        //
+        if(!($tarefa->user_id == auth()->user()->id)) {
+            return view('acesso-negado');
+        }
+
+        $tarefa->update($request->all());
+        return redirect()->route('tarefa.show', ['tarefa' => $tarefa->id]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param Tarefa $tarefa
-     * @return Response
+     * @return RedirectResponse
      */
     public function destroy(Tarefa $tarefa)
     {
-        //
+        if(!($tarefa->user_id == auth()->user()->id)) {
+            return view('acesso-negado');
+        }
+
+        $tarefa->delete();
+        return redirect()->route('tarefa.index');
     }
 }
