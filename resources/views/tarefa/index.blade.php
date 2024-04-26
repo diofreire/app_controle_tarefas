@@ -10,7 +10,7 @@
                         <a class="float-right" href="{{ route('tarefa.create') }}" data-bs-toggle="tooltip" title="Adicionar nova">
                             <i class="bi-file-plus-fill" style="font-size: 1.5rem;"></i>
                         </a>
-                        <a class="float-right mr-3" href="{{ route('tarefa.download') }}" data-bs-toggle="tooltip" title="Exportar Tarefas">
+                        <a class="float-right mr-3" href="{{ route('tarefa.download') }}" data-bs-toggle="tooltip" title="Download">
                             <i class="bi-cloud-arrow-down-fill" style="font-size: 1.5rem;"></i>
                         </a>
                     </div>

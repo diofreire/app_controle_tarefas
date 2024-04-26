@@ -145,10 +145,36 @@ class TarefaController extends Controller
     }
 
     /**
-     * @return BinaryFileResponse
+     * @return Application|Factory|View
      */
-    public function download()
+    public function download(bool $error = false)
     {
-        return Excel::download(new TarefasExport, 'tarefas.xlsx');
+        return view(
+            'tarefa.download',
+            [
+                'error' => $error
+            ]
+        );
+    }
+
+    /**
+     * @return BinaryFileResponse|RedirectResponse
+     */
+    public function exportacao(Request $request)
+    {
+        $extensoesPermitidas = ['xlsx', 'csv'];
+
+        // Verificar a extensao do solicitada
+        if(!in_array($request->get('extensao'), $extensoesPermitidas)) {
+            return redirect()
+                ->route(
+                    'tarefa.download',
+                    [
+                        'error' => true
+                    ]
+            );
+        }
+
+        return Excel::download(new TarefasExport, "tarefas.{$request->get('extensao')}");
     }
 }

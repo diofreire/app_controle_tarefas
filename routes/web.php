@@ -20,7 +20,10 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
-Route::get('tarefa/exportacao','App\Http\Controllers\TarefaController@download')->name('tarefa.download');
+Route::get('tarefa/download/{error?}','App\Http\Controllers\TarefaController@download')
+    ->name('tarefa.download');
+Route::post('tarefa/exportacao/','App\Http\Controllers\TarefaController@exportacao')
+    ->name('tarefa.exportacao');
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
 //    ->name('home')
