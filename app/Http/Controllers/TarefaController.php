@@ -162,7 +162,7 @@ class TarefaController extends Controller
      */
     public function exportacao(Request $request)
     {
-        $extensoesPermitidas = ['xlsx', 'csv'];
+        $extensoesPermitidas = ['xlsx', 'csv', 'pdf'];
 
         // Verificar a extensao do solicitada
         if(!in_array($request->get('extensao'), $extensoesPermitidas)) {
