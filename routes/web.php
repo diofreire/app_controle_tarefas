@@ -24,6 +24,8 @@ Route::get('tarefa/download/{error?}','App\Http\Controllers\TarefaController@dow
     ->name('tarefa.download');
 Route::post('tarefa/exportacao/','App\Http\Controllers\TarefaController@exportacao')
     ->name('tarefa.exportacao');
+Route::get('tarefa/exportar','App\Http\Controllers\TarefaController@exportar')
+    ->name('tarefa.exportar');
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
 //    ->name('home')

@@ -6,12 +6,15 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        Tarefas
-                        <a class="float-right" href="{{ route('tarefa.create') }}" data-bs-toggle="tooltip" title="Adicionar nova">
-                            <i class="bi-file-plus-fill" style="font-size: 1.5rem;"></i>
-                        </a>
+                        <strong>Tarefas</strong>
                         <a class="float-right mr-3" href="{{ route('tarefa.download') }}" data-bs-toggle="tooltip" title="Download">
                             <i class="bi-cloud-arrow-down-fill" style="font-size: 1.5rem;"></i>
+                        </a>
+                        <a class="float-right mr-3" href="{{ route('tarefa.exportar') }}" target="_blank" data-bs-toggle="tooltip" title="PDF V2">
+                            <i class="bi-box-arrow-in-up-right" style="font-size: 1.5rem;"></i>
+                        </a>
+                        <a class="float-right mr-3" href="{{ route('tarefa.create') }}" data-bs-toggle="tooltip" title="Adicionar nova">
+                            <i class="bi-file-plus-fill" style="font-size: 1.5rem;"></i>
                         </a>
                     </div>
 
